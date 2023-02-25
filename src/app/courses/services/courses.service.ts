@@ -16,8 +16,6 @@ export class CoursesService {
     return this.httpClient.get<Course[]>(this.API)
     .pipe(
       first(),
-      //delay(3000),
-      tap(courses => console.log(courses))
     );
   }
 
@@ -26,7 +24,22 @@ export class CoursesService {
   }
 
   save(gravar: Partial<Course> ){
-    return this.httpClient.post<Course[]>(this.API, gravar).pipe(first());
 
+    if(gravar._id) {
+      return this.update(gravar);
+    }
+    return this.create(gravar)
+  }
+
+  private create(gravar: Partial<Course>){
+    return this.httpClient.post<Course>(this.API, gravar).pipe(first());
+  }
+
+  private update(gravar: Partial<Course>){
+    return this.httpClient.put<Course>( `${this.API}/${gravar._id}`, gravar).pipe(first());
+  }
+
+  deletar(id: string){
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 }

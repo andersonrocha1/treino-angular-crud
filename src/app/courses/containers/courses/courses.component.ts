@@ -27,6 +27,7 @@ export class CoursesComponent implements OnInit {
     //this.courses = [];
     //this.coursesService = new CoursesService();
     this.onRefresh();
+
   }
 
   ngOnInit(): void {

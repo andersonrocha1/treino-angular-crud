@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Course } from '../../model/course';
 
 @Component({
@@ -6,7 +6,7 @@ import { Course } from '../../model/course';
   templateUrl: './courses-list.component.html',
   styleUrls: ['./courses-list.component.scss']
 })
-export class CoursesListComponent {
+export class CoursesListComponent implements OnInit {
 
   @Input() courses: Course[]= [];
   @Output() add = new EventEmitter(false);
@@ -15,9 +15,9 @@ export class CoursesListComponent {
 
   readonly displayedColumns = ['name', 'category', 'actions'];
 
-  constructor(){
+  constructor(){ }
 
-    }
+  ngOnInit(): void { }
 
     onAdd(){
       this.add.emit(true);

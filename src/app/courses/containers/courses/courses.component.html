@@ -2,7 +2,7 @@
   <mat-toolbar>Cursos Disponíveis</mat-toolbar>
   <div class="example-container mat-elevation-z8">
     <app-courses-list
-      *ngIf="courses$ | async as courses; else loading"
+    *ngIf="courses$ | async as courses; else loading"
       [courses]="courses"
       (add)="onAdd()"
       (edit)="onEdit($event)"

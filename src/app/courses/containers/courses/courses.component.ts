@@ -22,12 +22,24 @@ export class CoursesComponent implements OnInit {
   //coursesService: CoursesService;
 
   constructor(private coursesService: CoursesService,
-    public dialog: MatDialog, private router: Router,
-    private route: ActivatedRoute, private snackBar: MatSnackBar){
-    //this.courses = [];
-    //this.coursesService = new CoursesService();
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
+    ) {
+
     this.onRefresh();
 
+  }
+
+  onRefresh(){
+    this.courses$ = this.coursesService.findAll()
+    .pipe(
+      catchError(error => {
+        this.onError('Erro ao carregar cursos...')
+        return of([]);
+      })
+    );
   }
 
   ngOnInit(): void {
@@ -67,15 +79,6 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  onRefresh(){
-    this.courses$ = this.coursesService.findAll()
-    .pipe(
-      catchError(error => {
-        this.onError('Erro ao carregar cursos...')
-        return of([]);
-      })
-    );
-  }
 
   onError(errorMsg: String) {
     this.dialog.open(ErrorDialogComponent, {

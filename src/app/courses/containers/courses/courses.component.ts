@@ -46,23 +46,21 @@ export class CoursesComponent implements OnInit {
 
   }
 
-  onRefresh(pageEvent: PageEvent = { length: 0, pageIndex: 0, pageSize: 10}) {
-    this.courses$ = this.coursesService.findAll( pageEvent.pageIndex, pageEvent.pageSize)
-    .pipe(
-      tap( () => {
-        this.pageIndex = pageEvent.pageIndex;
-        this.pageSize =  pageEvent.pageSize;
-      }),
-      catchError(error => {
-        this.onError('Erro ao carregar cursos...')
-        return of({ courses:[], totalElements: 0, totalPages: 0})
-      })
-    );
+  onRefresh(pageEvent: PageEvent = { length: 0, pageIndex: 0, pageSize: 10 }) {
+    this.courses$ = this.coursesService.findAll(pageEvent.pageIndex, pageEvent.pageSize)
+      .pipe(
+        tap(() => {
+          this.pageIndex = pageEvent.pageIndex;
+          this.pageSize = pageEvent.pageSize;
+        }),
+        catchError(error => {
+          this.onError('Erro ao carregar cursos.');
+          return of({ courses: [], totalElements: 0, totalPages: 0 })
+        })
+      );
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onAdd(){
     this.router.navigate(['newCourse'], {relativeTo: this.route});
@@ -98,7 +96,7 @@ export class CoursesComponent implements OnInit {
   }
 
 
-  onError(errorMsg: String) {
+  onError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });

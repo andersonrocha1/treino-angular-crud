@@ -1,5 +1,5 @@
 import { Course } from './../model/course';
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { first } from 'rxjs';
 import { CoursePage } from '../model/course-page';
@@ -12,9 +12,9 @@ export class CoursesService {
   private readonly API = '/api/courses';
   constructor(private httpClient : HttpClient) { }
 
-  findAll(page = 0, pageSize = 10) {
+  findAll(pageNumber = 0, pageSize = 10) {
 
-    return this.httpClient.get<CoursePage>( this.API, { params: { page, pageSize } })
+    return this.httpClient.get<CoursePage>(this.API, { params: { pageNumber, pageSize } })
     .pipe(
       first(),
     );

@@ -1,7 +1,7 @@
 <mat-card>
   <mat-toolbar>Cursos Disponíveis</mat-toolbar>
-  <div class="example-container mat-elevation-z8"
-  *ngIf="courses$ | async as courses; else loading">
+  <div *ngIf="courses$ | async as courses; else loading" class="example-container mat-elevation-z8"
+  >
 
   <app-courses-list
 

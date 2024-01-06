@@ -1,4 +1,4 @@
-import { Location, NgIf, NgFor } from '@angular/common';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, UntypedFormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,18 +22,16 @@ import { MatCardModule } from '@angular/material/card';
     styleUrls: ['./course-form.component.scss'],
     standalone: true,
     imports: [
-        MatCardModule,
-        MatToolbarModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        NgIf,
-        MatSelectModule,
-        MatOptionModule,
-        MatButtonModule,
-        MatIconModule,
-        NgFor,
-    ],
+    MatCardModule,
+    MatToolbarModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatButtonModule,
+    MatIconModule
+],
 })
 export class CourseFormComponent implements OnInit {
 
